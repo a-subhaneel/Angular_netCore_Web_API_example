@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+            <form #postApiForm="ngForm" (ngSubmit)="onApiPost(postApiForm.value)">
+                <div class="form-group">
+                    <label for="userId">userId</label>
+                    <input type="text" class="form-control" id="userId" required ngModel name="userId" />
+                </div>
+                <div class="form-group">
+                    <label for="fullName">Fullname</label>
+                    <input class="form-control" id="fullName" required ngModel name="fullName" />
+                </div>
+                <button class="btn btn-outline-primary" type="submit" [disabled]="!postApiForm.valid">
+                    Send Post
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<hr>
+<!-- <button class="btn btn-outline-info" (click)="getUserData()">
+    Fetch userData
+  </button>
+  <hr> -->
+
+<ngx-spinner *ngIf="!userData" style="background-color:rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box">
+    <p style="color: white"> Loading... </p>
+    </ngx-spinner>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-md-offset-3">
+                <div *ngIf="userData" class="table-center">
+                    <center>
+                        <table style="border: 1px solid; width: 700px;">
+                            <thead>
+                                <tr class="mat-row">
+                                    <th>Serial</th>
+                                    <th>User-id</th>
+                                    <th>Password</th>
+                                    <th>Fullname</th>
+                                </tr>
+                            </thead>
+                            <tbody style="padding: 5px;">
+                                <tr *ngFor='let data of userData; let i = index' class="mat-row">
+                                    <td> {{i + 1}}</td>
+                                    <td class="mat-cell">{{data.userId}}</td>
+                                    <td class="mat-cell">{{data.password}}</td>
+                                    <td class="mat-cell">{{ data.firstName }} {{ data.lastName }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
